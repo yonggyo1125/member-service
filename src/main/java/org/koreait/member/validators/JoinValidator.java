@@ -29,5 +29,32 @@ public class JoinValidator implements Validator, PasswordValidator {
 
         RequestJoin form = (RequestJoin)target;
 
+        /**
+         * 1. 이메일 중복 여부 체크
+         * 2. 비밀번호 복잡성 - 알파벳 대소문자 각각 1개 이상, 숫자 1개 이상, 특수 문자 포함
+         * 3. 비밀번호, 비밀번호 확인 일치 여부
+         */
+        String email = form.getEmail();
+        String password = form.getPassword();
+        String confirmPassword = form.getConfirmPassword();
+
+        // 1. 이메일 중복 여부 체크
+        if (memberRepository.exists(email)) {
+            errors.rejectValue("email", "Duplicated");
+        }
+
+
+        // 2. 비밀번호 복잡성 S
+        if (!alphaCheck(password, false) || !numberCheck(password) || !specialCharsCheck(password)) {
+            errors.rejectValue("password", "Complexity");
+        }
+        // 2. 비밀번호 복잡성 E
+
+        // 3. 비밀번호, 비밀번호 확인 일치 여부 S
+        if (!password.equals(confirmPassword)) {
+            errors.rejectValue("confirmPassword", "Mismatch");
+        }
+        // 3. 비밀번호, 비밀번호 확인 일치 여부 E
+
     }
 }
