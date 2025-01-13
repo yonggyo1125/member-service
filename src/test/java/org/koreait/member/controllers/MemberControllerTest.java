@@ -29,10 +29,10 @@ public class MemberControllerTest {
     void joinTest() throws Exception {
         RequestJoin form = new RequestJoin();
         form.setEmail("user01@test.org");
-        form.setName("사용자01");
-        form.setPassword("_aA123456");
-        form.setConfirmPassword(form.getPassword());
-        form.setRequiredTerms1(true);
+        //form.setName("사용자01");
+       // form.setPassword("_aA123456");
+        //form.setConfirmPassword(form.getPassword());
+        //form.setRequiredTerms1(true);
         form.setRequiredTerms2(true);
         form.setRequiredTerms3(true);
         form.setOptionalTerms(List.of("advertisement"));
