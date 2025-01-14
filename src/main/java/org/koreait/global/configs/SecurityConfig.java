@@ -48,8 +48,13 @@ public class SecurityConfig {
                    }); // 로그인 후 권한이 없는 경우
                 })
                 .authorizeHttpRequests(c -> {
-                   c.requestMatchers("/member/join", "/member/login").permitAll()
-                           .requestMatchers("/admin/member/**").hasAnyAuthority("ADMIN")
+                   c.requestMatchers(
+                           "/join", // /api/v1/member/join
+                                   "/login",
+                                   "/apidocs.html",
+                                   "/swagger-ui/**",
+                                   "/api-docs/**").permitAll()
+                           .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                            .anyRequest().authenticated();
                 });
 
