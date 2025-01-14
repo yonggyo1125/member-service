@@ -31,5 +31,7 @@ public class LoginFilter extends GenericFilterBean {
             res.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
             e.printStackTrace();
         }
+
+        chain.doFilter(request, response);
     }
 }

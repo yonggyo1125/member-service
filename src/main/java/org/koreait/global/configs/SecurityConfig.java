@@ -52,7 +52,7 @@ public class SecurityConfig {
                            "/join", // /api/v1/member/join
                                    "/login",
                                    "/apidocs.html",
-                                   "/swagger-ui/**",
+                                   "/swagger-ui*/**",
                                    "/api-docs/**").permitAll()
                            .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                            .anyRequest().authenticated();
