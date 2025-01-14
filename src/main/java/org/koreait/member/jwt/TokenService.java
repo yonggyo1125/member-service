@@ -103,7 +103,7 @@ public class TokenService {
         String authHeader = request.getHeader("Authorization");
 
         if (!StringUtils.hasText(authHeader)) {
-            throw new UnAuthorizedException();
+            return null; // 회원가입 또는 로그인 시
         }
 
         String token = authHeader.substring(7);

@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
-@ActiveProfiles({"default", "test"})
+@ActiveProfiles({"default", "test", "jwt"})
 @AutoConfigureMockMvc
 public class MemberControllerTest {
 
@@ -27,12 +27,13 @@ public class MemberControllerTest {
 
     @Test
     void joinTest() throws Exception {
+        // 회원 가입
         RequestJoin form = new RequestJoin();
         form.setEmail("user01@test.org");
-        //form.setName("사용자01");
-       // form.setPassword("_aA123456");
-        //form.setConfirmPassword(form.getPassword());
-        //form.setRequiredTerms1(true);
+        form.setName("사용자01");
+        form.setPassword("_aA123456");
+        form.setConfirmPassword(form.getPassword());
+        form.setRequiredTerms1(true);
         form.setRequiredTerms2(true);
         form.setRequiredTerms3(true);
         form.setOptionalTerms(List.of("advertisement"));
@@ -41,5 +42,14 @@ public class MemberControllerTest {
         mockMvc.perform(post("/member/join")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(body)).andDo(print());
+
+        // 로그인 테스트 - 토큰 발급
+        RequestLogin loginForm = new RequestLogin();
+        loginForm.setEmail(form.getEmail());
+        loginForm.setPassword(form.getPassword());
+        String loginBody = om.writeValueAsString(loginForm);
+        mockMvc.perform(post("/member/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(loginBody)).andDo(print());
     }
 }
