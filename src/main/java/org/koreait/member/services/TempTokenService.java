@@ -77,7 +77,7 @@ public class TempTokenService {
         data.put("content", tokenUrl);
 
         try {
-            String emailUrl = utils.serviceUrl("email-service", "/");
+            String emailUrl = utils.serviceUrl("email-service", "");
             String params = om.writeValueAsString(data);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
