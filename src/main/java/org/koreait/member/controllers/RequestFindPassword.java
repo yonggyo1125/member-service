@@ -10,4 +10,7 @@ public class RequestFindPassword {
 
     @NotBlank
     private String mobile; // 휴대전화번호
+
+    @NotBlank
+    private String origin; //  프론트 앤드 주소
 }

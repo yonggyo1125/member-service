@@ -29,4 +29,13 @@ public class TempToken {
 
     @Column(length=65, nullable = false)
     private String origin;
+
+    /**
+     * 토큰 만료 여부
+     *
+     * @return
+     */
+    public boolean isExpired() {
+        return expireTime == null || expireTime.isBefore(LocalDateTime.now());
+    }
 }

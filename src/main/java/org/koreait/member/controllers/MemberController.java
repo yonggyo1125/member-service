@@ -96,5 +96,21 @@ public class MemberController {
             throw new BadRequestException(utils.getErrorMessages(errors));
         }
 
+        updateService.issueToken(form);
+    }
+
+    /**
+     * 비밀번호 변경
+     * @param form
+     * @param errors
+     */
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/change/password")
+    public void changePassword(@Valid RequestChangePassword form, Errors errors) {
+        if (errors.hasErrors()) {
+            throw new BadRequestException(utils.getErrorMessages(errors));
+        }
+
+        updateService.changePassword(form);
     }
 }
