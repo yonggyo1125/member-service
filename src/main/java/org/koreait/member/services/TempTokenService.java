@@ -40,7 +40,7 @@ public class TempTokenService {
      *
      * @return
      */
-    public TempToken issue(String email, TokenAction action) {
+    public TempToken issue(String email, TokenAction action, String origin) {
         Member member = memberRepository.findByEmail(email).orElseThrow(MemberNotFoundException::new);
 
         TempToken token = TempToken.builder()
@@ -48,6 +48,7 @@ public class TempTokenService {
                 .member(member)
                 .action(action)
                 .expireTime(LocalDateTime.now().plusMinutes(3L))
+                .origin(origin) // 유입된 프론트앤드 도메인 주소 예) https://pintech.koreait.xyz
                 .build();
 
         tempTokenRepository.saveAndFlush(token);

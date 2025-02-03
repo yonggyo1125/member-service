@@ -26,4 +26,7 @@ public class TempToken {
     private Member member;
 
     private LocalDateTime expireTime;
+
+    @Column(length=65, nullable = false)
+    private String origin;
 }
