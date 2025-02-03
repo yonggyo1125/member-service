@@ -40,4 +40,13 @@ public class TempTokenService {
 
         return token;
     }
+
+    /**
+     * 발급 받은 토큰으로 접근 가능한 주소 생성 후 메일 전송
+     *
+     * @param token
+     */
+    public void sendEmail(String token) {
+
+    }
 }
