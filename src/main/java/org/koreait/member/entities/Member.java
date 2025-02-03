@@ -26,6 +26,9 @@ public class Member extends BaseEntity implements Serializable {
     @Column(length=40, nullable = false)
     private String name;
 
+    @Column(length=15, nullable = false)
+    private String mobile; // 휴대전화번호
+
     private boolean requiredTerms1;
 
     private boolean requiredTerms2;
