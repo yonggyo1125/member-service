@@ -1,6 +1,7 @@
 package org.koreait.member.services;
 
 import lombok.RequiredArgsConstructor;
+import org.koreait.global.libs.Utils;
 import org.koreait.member.constants.TokenAction;
 import org.koreait.member.entities.Member;
 import org.koreait.member.entities.TempToken;
@@ -9,6 +10,7 @@ import org.koreait.member.repositories.MemberRepository;
 import org.koreait.member.repositories.TempTokenRepository;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -20,6 +22,8 @@ public class TempTokenService {
 
     private final MemberRepository memberRepository;
     private final TempTokenRepository tempTokenRepository;
+    private final RestTemplate restTemplate;
+    private final Utils utils;
 
     /**
      * 임시 접근 토큰 발급
